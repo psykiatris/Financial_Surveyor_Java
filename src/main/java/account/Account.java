@@ -1,34 +1,31 @@
 package account;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public abstract class Account {
 
     /*
-    Basic account info.
+    Boiler-plate for account types (e.g. credit card, etc)
+    Variables here are static and shared with objects.
+    Term (months) will be an enum, implemented by derived classes.
      */
 
-    private double principal;
-    private double interestRate;
+    protected double principal;
+    protected double interestRate;
+    protected LocalDate startDate;
 
-    /*
-    No constructor due to abstract. Methods can be
-    created, however.
-     */
 
-    public double getPrincipal() {
-        return principal;
-    }
 
-    public void setPrincipal(double p) {
-        principal = p;
-    }
+    public abstract double getPrincipal();
 
-    public double getInterestRate() {
-        return interestRate;
-    }
+    public abstract void setPrincipal(double p);
 
-    public void setInterestRate(double i) {
-        interestRate = i;
-    }
+    public abstract double getInterestRate();
+
+    public abstract void setInterestRate(double i);
+
+
 
 
 }
