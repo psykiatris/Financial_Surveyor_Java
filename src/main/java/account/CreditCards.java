@@ -24,7 +24,7 @@ public class CreditCards extends Account {
     @Override
     public void setPrincipal(double p) {
         principal = p;
-        System.out.println("Principal set to " + principal);
+
 
     }
 
@@ -45,7 +45,7 @@ public class CreditCards extends Account {
     @Override
     public void setInterestRate(double rate) {
         interestRate = rate;
-        System.out.println("Interest rate set to " + interestRate);
+
     }
 
 
