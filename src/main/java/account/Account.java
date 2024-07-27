@@ -1,7 +1,6 @@
 package account;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public abstract class Account {
 
@@ -14,6 +13,13 @@ public abstract class Account {
     protected double principal;
     protected double interestRate;
     protected LocalDate startDate;
+    protected LocalDate currentDate;
+
+    // Simply to set date at creation time.
+    public Account() {
+        this.currentDate = LocalDate.now();
+
+    }
 
 
 
@@ -24,6 +30,11 @@ public abstract class Account {
     public abstract double getInterestRate();
 
     public abstract void setInterestRate(double i);
+
+    public abstract LocalDate getStartDate();
+
+    public abstract void setStartDate(LocalDate d);
+
 
 
 

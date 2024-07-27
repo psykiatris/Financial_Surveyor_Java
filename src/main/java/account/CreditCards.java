@@ -5,6 +5,14 @@ import java.util.Date;
 
 public class CreditCards extends Account {
 
+    public CreditCards() {
+        super();
+    }
+
+    public void printCurrentdate() {
+        System.out.println("Creation date: " + currentDate);
+    }
+
 
 
 
@@ -20,10 +28,10 @@ public class CreditCards extends Account {
 
     }
 
-    /* @Override
-    public Date getStartDate() {
+    @Override
+    public LocalDate getStartDate() {
         return startDate;
-    } */
+    }
 
     public void setStartDate(LocalDate begin) {
         startDate = begin;
@@ -39,4 +47,6 @@ public class CreditCards extends Account {
         interestRate = rate;
         System.out.println("Interest rate set to " + interestRate);
     }
+
+
 }
