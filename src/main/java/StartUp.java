@@ -1,6 +1,13 @@
 import account.CreditCards;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
+import javax.money.format.MonetaryAmountFormat;
+import javax.money.format.MonetaryFormats;
 import java.time.LocalDate;
+import java.util.Currency;
+
 
 // new feature - no need to explicitly state class with a main() method.
 public static void main(String[] args) {
@@ -17,4 +24,13 @@ public static void main(String[] args) {
     System.out.println("Interest Rate: " + myCC.getInterestRate());
 
 
+    // Printing currency
+    // Getting currency code
+
+
+
+
+
 }
+
+
