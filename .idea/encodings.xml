@@ -3,5 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/src/main/java" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/src/main/resources" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/moneta/src/main/java" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/moneta/src/main/resources" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/src/main/java" charset="UTF-8" />
+    <file url="file://$USER_HOME$/jsr354-ri-1.4.2/src/main/resources" charset="UTF-8" />
   </component>
 </project>

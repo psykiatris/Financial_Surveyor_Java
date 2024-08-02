@@ -5,7 +5,18 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-base/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-ecb/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-imf/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-core/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
