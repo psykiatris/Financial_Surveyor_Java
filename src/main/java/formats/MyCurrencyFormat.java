@@ -7,6 +7,8 @@ import javax.money.format.MonetaryAmountFormat;
 import javax.money.format.MonetaryFormats;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Set;
+import java.util.function.ToDoubleBiFunction;
 
 
 public class MyCurrencyFormat {
@@ -17,19 +19,29 @@ public class MyCurrencyFormat {
     correct currency. Even though it is a string, required by CurrencyUnit,
     it will not accept the string from Currency.
 
+
+    Monetary.getCurrencies() is not returning a list of currencies from
+    a passed in Locale.getDefault(). Ergo, the CurrencyUnit does not recognize or
+    find currencyCode (as Monetary's list is empty). Searching for work around.
+
      */
 
     public static void main(String[] args) {
+        Locale locale = new Locale("en", "US");
+        /* Subclass CurrencyUnit to see if I can populated
+        it with list of currencyCoodes.
+         */
 
-        Currency c = Currency.getInstance(new Locale("en", "US"));
-        String code = c.getCurrencyCode();
-        System.out.println("This displays: " + code);
 
-        // Non-working code
+        /* Non-working code
 
 
         // get currency unit by currency code
-        CurrencyUnit usd = Monetary.getCurrency(c.getCurrencyCode());
+        CurrencyUnit usd = Monetary.getCurrency(Locale.getDefault(), "USD");
+
+
+
+        // CurrencyUnit usd = Monetary.getCurrency(Locale.getDefault(), "USD");
 
         // get the MonetaryAmount
         MonetaryAmount monetaryAmount = Monetary.getDefaultAmountFactory().setCurrency(usd).setNumber(100).create();
@@ -38,7 +50,8 @@ public class MyCurrencyFormat {
         MonetaryAmountFormat formatUs = MonetaryFormats.getAmountFormat(Locale.US);
         String formattedUs = formatUs.format(monetaryAmount);
         System.out.println(formattedUs);  // will print "USD100.00"
-        // End of non-working code
+
+        */ // End of non-working code
     }
 
 }
