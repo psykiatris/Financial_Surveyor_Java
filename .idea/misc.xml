@@ -6,16 +6,24 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/calc/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/exchange/exchange-rate-frb/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/exchange/exchange-rate-yahoo/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/exchange/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/javamoney-cdi/pom.xml" />
+        <option value="$USER_HOME$/JavaMoney-javamoney-lib-2682f47/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-base/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-ecb/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/moneta-convert-imf/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-convert/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta-core/pom.xml" />
         <option value="$USER_HOME$/jsr354-ri-1.4.2/moneta/pom.xml" />
+        <option value="$USER_HOME$/jsr354-ri-1.4.2/pom.xml" />
       </set>
     </option>
   </component>
