@@ -2,6 +2,7 @@ import account.CreditCards;
 
 // Implicit class
 public static void main(String[] args) {
+    StartUp.args = args;
 
     CreditCards myCC = new CreditCards();
     myCC.setPrincipal(453.22);
@@ -16,3 +17,5 @@ public static void main(String[] args) {
     System.out.println("Interest Rate: " + myCC.getInterestRate());
 
 }
+
+        private static String[] args;
