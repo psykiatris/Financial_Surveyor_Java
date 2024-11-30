@@ -10,6 +10,7 @@ public class StartUp {
         myCC.setInterestRate(4.5);
         myCC.setStartDate(LocalDate.parse("2024-06-30"));
 
+        // Testing - will remove later in production
         // Retrieve info
         myCC.printCurrentdate();
         System.out.println("Start date: " + myCC.getStartDate());
