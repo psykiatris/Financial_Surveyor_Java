@@ -15,12 +15,14 @@ public abstract class BaseAccount {
     protected LocalDate startDate;
     protected int term;
 
-    public BaseAccount(double p, double i, LocalDate sDate, int t) {
+    // Generic constructor
+
+    public <P extends Number, I extends Number, S extends LocalDate, T extends Number> BaseAccount(double p, double i, LocalDate sDate, int t) {
         this.principal = p;
         this.interestRate = i;
-        this.startDate = sDate;
+        this.startDate = LocalDate.parse(sDate.toString());
         this.term = t;
-        this.creationDate = LocalDate.now();
+        this.creationDate = LocalDate.now()     ;
     }
 
     public BaseAccount() {
@@ -34,5 +36,7 @@ public abstract class BaseAccount {
     public abstract void setInterestRate(double i);
     public abstract void setStartDate(LocalDate beginDate);
     public abstract void setTerm(int t);
+    public abstract int getTerm();
+    public abstract void getCreationDate();
 
 }
