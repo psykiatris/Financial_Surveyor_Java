@@ -3,15 +3,26 @@ package account;
 import java.time.LocalDate;
 
 public class SavingsAcct extends BaseAccount {
+    // Added field
     LocalDate maturityDate;
 
+    // Default constructor
+    public SavingsAcct() {
+        super();
+
+    }
+
+    // Allows term period to be passed.
     public SavingsAcct(double p, double i, LocalDate sDate, int t, LocalDate mDate) {
         super(p, i, sDate, t);
         this.maturityDate = LocalDate.parse(mDate.toString());
     }
 
-    public SavingsAcct() {
-        super();
+
+    // Default term period (5 years = 60 months)
+       public SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate) {
+        super(p, i, sDate, 60);
+        this.maturityDate = LocalDate.parse(mDate.toString());
     }
 
 
@@ -31,6 +42,12 @@ public class SavingsAcct extends BaseAccount {
     }
 
     @Override
+    public void setBalance(double p) {
+        this.principal = p;
+
+    }
+
+    @Override
     public void setInterestRate(double i) {
         this.interestRate = i;
 
@@ -40,6 +57,11 @@ public class SavingsAcct extends BaseAccount {
     public void setStartDate(LocalDate beginDate) {
         this.startDate = beginDate;
 
+    }
+
+    @Override
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
     @Override
@@ -54,8 +76,8 @@ public class SavingsAcct extends BaseAccount {
     }
 
     @Override
-    public void getCreationDate() {
-        System.out.println("Creation Date: " + creationDate);
+    public LocalDate getCreationDate() {
+        return creationDate;
 
     }
 }

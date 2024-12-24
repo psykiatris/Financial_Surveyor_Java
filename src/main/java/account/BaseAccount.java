@@ -16,7 +16,6 @@ public abstract class BaseAccount {
     protected int term;
 
     // Generic constructor
-
     public <P extends Number, I extends Number, S extends LocalDate, T extends Number> BaseAccount(double p, double i, LocalDate sDate, int t) {
         this.principal = p;
         this.interestRate = i;
@@ -25,18 +24,32 @@ public abstract class BaseAccount {
         this.creationDate = LocalDate.now()     ;
     }
 
+    // No parameter constructor, only creation date defined.
     public BaseAccount() {
         this.creationDate = LocalDate.now();
     }
 
     // Methods to handle different scenarios
-    public abstract double getInterestRate();   // APR on loan or savings
-    public abstract double getInterest();   // Colllect total interest calculated for term
+
+    // Balance
     public abstract double getBalance();    // Principal balance
+    public abstract void setBalance(double p);
+
+    public abstract double getInterestRate();   // APR on loan or savings
     public abstract void setInterestRate(double i);
+
+    // Colllect total interest calculated for term
+    public abstract double getInterest();
+
+    // Start date
     public abstract void setStartDate(LocalDate beginDate);
+    public abstract LocalDate getStartDate();
+
+    // Term
     public abstract void setTerm(int t);
     public abstract int getTerm();
-    public abstract void getCreationDate();
+
+    // Returns creation date which is auto-generated
+    public abstract LocalDate getCreationDate();
 
 }
