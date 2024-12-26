@@ -14,6 +14,15 @@ public abstract class BaseAccount {
     protected LocalDate creationDate;
     protected LocalDate startDate;
     protected int term;
+    protected double totalInterest;
+
+    // Mortgage
+    protected double escrowAmt;
+    protected double totalPmtAmt;   // Addition of mortgage payment + escrowAmt
+
+    // Savings
+    protected LocalDate maturityDate;   // For maturity dates
+
 
     // Generic constructor
     public <P extends Number, I extends Number, S extends LocalDate, T extends Number> BaseAccount(double p, double i, LocalDate sDate, int t) {
@@ -25,9 +34,12 @@ public abstract class BaseAccount {
     }
 
     // No parameter constructor, only creation date defined.
+    // For all subclasses
     public BaseAccount() {
         this.creationDate = LocalDate.now();
     }
+
+
 
     // Methods to handle different scenarios
 
