@@ -4,19 +4,16 @@ import java.time.LocalDate;
 
 public class MortgageAcct extends BaseAccount {
 
-    // Fields specific to this class are held in BaseAccount.
+    // Local field
+    protected double escrowAmt;
+    protected double totalPmtAmt;   // Addition of mortgage payment + escrowAmt
+
 
     // No parameters
     public MortgageAcct() {
         super();
     }
 
-
-
-    @Override
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
 
     // Basic info - no escrow info - allows passing custom term
     public MortgageAcct(double p, double i, LocalDate sDate, int t) {
@@ -40,6 +37,11 @@ public class MortgageAcct extends BaseAccount {
     public <P extends Number, I extends Number, S extends LocalDate, E extends Number> MortgageAcct(double p, double i, LocalDate sDate, double e) {
         super(p, i, sDate, 360);
         this.escrowAmt = e;
+    }
+
+    @Override
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
     // Methods ------------
@@ -70,24 +72,24 @@ public class MortgageAcct extends BaseAccount {
     }
 
     @Override
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    @Override
     public void setStartDate(LocalDate beginDate) {
         this.startDate = beginDate;
     }
 
     @Override
-    public LocalDate getStartDate() {
-        return startDate;
+    public int getTerm() {
+        return term;
     }
 
     @Override
     public void setTerm(int t) {
         this.term = t;
 
-    }
-
-    @Override
-    public int getTerm() {
-        return term;
     }
 
     // Local methods for escrow info
@@ -98,7 +100,6 @@ public class MortgageAcct extends BaseAccount {
     public void setEscrowAmt(double e) {
         this.escrowAmt = e;
     }
-
 
 
 }
