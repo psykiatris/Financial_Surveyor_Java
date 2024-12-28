@@ -2,7 +2,8 @@ package account;
 
 import java.time.LocalDate;
 
-public class SavingsAcct extends BaseAccount {
+// If superclass has extends clause in generic type def, must copy here also.
+public class SavingsAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number, M extends LocalDate> extends BaseAccount<P, I, S, T> {
 
     // Specific to savings
     protected LocalDate maturityDate;   // For maturity dates
@@ -29,13 +30,13 @@ public class SavingsAcct extends BaseAccount {
     }
 
     // Local generic constructor for maturidy dates - custom term
-    public <P extends Number, I extends Number, S extends LocalDate, M extends LocalDate, T extends Number> SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate, int t) {
+    public SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate, int t) {
         super(p, i, sDate, t);
         this.maturityDate = LocalDate.parse(mDate.toString());
     }
 
     // Default term
-    public <P extends Number, I extends Number, S extends LocalDate, M extends LocalDate> SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate) {
+    public SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate) {
         super(p, i, sDate, 60);
         this.maturityDate = LocalDate.parse(mDate.toString());
     }

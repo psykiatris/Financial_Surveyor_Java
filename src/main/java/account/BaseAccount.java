@@ -7,7 +7,7 @@ Account class for account management.
 
 import java.time.LocalDate;
 
-public abstract class BaseAccount {
+public abstract class BaseAccount<P extends Number, I extends Number, S extends LocalDate, T extends Number> {
 
     protected double principal;
     protected double interestRate;
@@ -17,7 +17,7 @@ public abstract class BaseAccount {
     protected double totalInterest;
 
     // Generic constructor
-    public <P extends Number, I extends Number, S extends LocalDate, T extends Number> BaseAccount(double p, double i, LocalDate sDate, int t) {
+    public  BaseAccount(double p, double i, LocalDate sDate, int t) {
         this.principal = p;
         this.interestRate = i;
         this.startDate = LocalDate.parse(sDate.toString());

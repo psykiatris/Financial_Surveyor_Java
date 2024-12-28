@@ -12,14 +12,17 @@ import java.time.LocalDate;
 public class StartUp {
     public static void main(String[] args) {
 
+
         // Default constructor only inputs creation date.
-        SavingsAcct save = new SavingsAcct();
+        // Even if not passing, still need to enter types in same order as class
+        // definition and super-class definition.
+        SavingsAcct<Double, Double, LocalDate, Integer, LocalDate> save = new SavingsAcct<Double, Double, LocalDate, Integer, LocalDate>();
         System.out.println("Savings created: " + save.getCreationDate());
         System.out.println();
 
-        MortgageAcct mtg = new MortgageAcct();
-        System.out.println("Mortgage created: " + mtg.getCreationDate());
-        System.out.println();
+       MortgageAcct<Double, Double, LocalDate, Integer, Double> mtg = new MortgageAcct<Double, Double, LocalDate, Integer, Double>();
+       System.out.println("Mortgage created: " + mtg.getCreationDate());
+        //System.out.println();
 
 
         // Create date variables to pass to object.
@@ -31,12 +34,12 @@ public class StartUp {
 
 
         // Did not include term, so it defaults to 60.
-        SavingsAcct save2 = new SavingsAcct(50000, 4.75, sDate, mDate);
+        SavingsAcct<Double, Double, LocalDate, Integer, LocalDate> save2 = new SavingsAcct<Double, Double, LocalDate, Integer, LocalDate>(50000.0, 4.75, sDate, mDate);
         System.out.println("Balance: " + save2.getBalance());
         System.out.println("Term: " + save2.getTerm() + " months");
         System.out.println();
 
-        MortgageAcct mtg2 = new MortgageAcct(150000.00, 5.69, sDate, 248.50);
+        MortgageAcct<Double, Double, LocalDate, Integer, Double> mtg2 = new MortgageAcct<Double, Double, LocalDate, Integer, Double>(150000.00, 5.69, sDate, 248.50);
         System. out.println("Monthly escrow is: " + mtg2.getEscrowAmt());
 
 
