@@ -2,41 +2,37 @@ package account;
 
 import java.time.LocalDate;
 
-public class MortgageAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number, E extends Number> extends BaseAccount<P, I, S, T> {
+public class MortgageAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number> extends BaseAccount<P, I, S, T> {
+
+    private static final int DEFAULT_TERM_PERIOD = 360;
 
     // Local field
-    protected double escrowAmt;
-    protected double totalPmtAmt;   // Addition of mortgage payment + escrowAmt
+    protected double escrowAmount;
 
-
-    // No parameters
+    // No parameters constructor
     public MortgageAcct() {
         super();
     }
 
-
-    // Basic info - no escrow info - allows passing custom term
-    public MortgageAcct(double p, double i, LocalDate sDate, int t) {
-        super(p, i, sDate, t);
-
+    // Constructor with custom term
+    public MortgageAcct(double principal, double interest, LocalDate startDate, int term) {
+        super(principal, interest, startDate, term);
     }
 
-    // No escow info - Default max term of 360
-    public MortgageAcct(double p, double i, LocalDate sDate) {
-        super(p, i, sDate, 360);
+    // Constructor with default term of 360
+    public MortgageAcct(double principal, double interest, LocalDate startDate) {
+        this(principal, interest, startDate, DEFAULT_TERM_PERIOD);
     }
 
-    // Escrow amount - pass custom term
-    // Making this generic
-    public MortgageAcct(double p, double i, LocalDate sDate, int t, double e) {
-        super(p, i, sDate, t);
-        this.escrowAmt = e;
+    // Constructor with escrow and custom term
+    public MortgageAcct(double principal, double interest, LocalDate startDate, int term, double escrowAmount) {
+        super(principal, interest, startDate, term);
+        this.escrowAmount = escrowAmount;
     }
 
-    // Escrow amount - pass default term of 360
-    public MortgageAcct(double p, double i, LocalDate sDate, double e) {
-        super(p, i, sDate, 360);
-        this.escrowAmt = e;
+    // Constructor with escrow and default term of 360
+    public MortgageAcct(double principal, double interest, LocalDate startDate, double escrowAmount) {
+        this(principal, interest, startDate, DEFAULT_TERM_PERIOD, escrowAmount);
     }
 
     @Override
@@ -44,15 +40,16 @@ public class MortgageAcct<P extends Number, I extends Number, S extends LocalDat
         return creationDate;
     }
 
-    // Methods ------------
+    // Methods
     @Override
     public double getBalance() {
+        // Placeholder for actual balance calculation.
         return 0;
     }
 
     @Override
-    public void setBalance(double p) {
-
+    public void setBalance(double principal) {
+        this.principalAmount = principal;
     }
 
     @Override
@@ -61,13 +58,12 @@ public class MortgageAcct<P extends Number, I extends Number, S extends LocalDat
     }
 
     @Override
-    public void setInterestRate(double i) {
-        this.interestRate = i;
-
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 
     @Override
-    public double getInterest() {
+    public double calculateTotalInterest() {
         return totalInterest;
     }
 
@@ -77,29 +73,30 @@ public class MortgageAcct<P extends Number, I extends Number, S extends LocalDat
     }
 
     @Override
-    public void setStartDate(LocalDate beginDate) {
-        this.startDate = beginDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     @Override
     public int getTerm() {
-        return term;
+        return termPeriod;
     }
 
     @Override
-    public void setTerm(int t) {
-        this.term = t;
-
+    public void setTerm(int termPeriod) {
+        this.termPeriod = termPeriod;
     }
 
     // Local methods for escrow info
-    public double getEscrowAmt() {
-        return escrowAmt;
+    public double getEscrowAmount() {
+        return escrowAmount;
     }
 
-    public void setEscrowAmt(double e) {
-        this.escrowAmt = e;
+    public void setEscrowAmount(double escrowAmount) {
+        this.escrowAmount = escrowAmount;
     }
 
-
+    public double calculateTotalPaymentAmount() {
+        return principalAmount + escrowAmount;
+    }
 }

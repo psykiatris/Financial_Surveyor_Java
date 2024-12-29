@@ -1,62 +1,67 @@
 package account;
-/*
-This is an abstract of account, with data and methods. Subclasses
-will derive from this class, and work with the generic
-Account class for account management.
- */
 
 import java.time.LocalDate;
 
 public abstract class BaseAccount<P extends Number, I extends Number, S extends LocalDate, T extends Number> {
 
-    protected double principal;
-    protected double interestRate;
-    protected LocalDate creationDate;
+    // Constants for better readability
+    private static final int DEFAULT_TERM_PERIOD = 60;
+
+    // Fields
+    protected double principalAmount;
+    protected double interestRate;  // APR
+    protected LocalDate creationDate = LocalDate.now();
     protected LocalDate startDate;
-    protected int term;
+    protected int termPeriod;
     protected double totalInterest;
 
-    // Generic constructor
-    public  BaseAccount(double p, double i, LocalDate sDate, int t) {
-        this.principal = p;
-        this.interestRate = i;
-        this.startDate = LocalDate.parse(sDate.toString());
-        this.term = t;
-        this.creationDate = LocalDate.now();
+    // Constructor with parameters
+    public BaseAccount(double principalAmount, double interestRate, LocalDate startDate, int termPeriod) {
+        validateNonNegative(principalAmount, "Principal amount");
+        validateNonNegative(interestRate, "Interest rate");
+        validateNonNegative(termPeriod, "Term period");
+
+        this.principalAmount = principalAmount;
+        this.interestRate = interestRate;
+        this.startDate = startDate;
+        this.termPeriod = termPeriod;
     }
 
-    // No parameter constructor, only creation date defined.
-    // For all subclasses
+    // Default constructor with creation date only
     public BaseAccount() {
-        this.creationDate = LocalDate.now();
+        // Default constructor logic moved to field initialization
     }
 
+    // Abstract methods defining general account behavior
+    public abstract double getBalance();
 
-    // Methods to handle different scenarios
+    public abstract void setBalance(double principalAmount);
 
-    // Balance
-    public abstract double getBalance();    // Principal balance
+    public abstract double getInterestRate();
 
-    public abstract void setBalance(double p);
+    public abstract void setInterestRate(double interestRate);
 
-    public abstract double getInterestRate();   // APR on loan or savings
-
-    public abstract void setInterestRate(double i);
-
-    // Colllect total interest calculated for term
-    public abstract double getInterest();
+    public abstract double calculateTotalInterest(); // Renamed for clarity
 
     public abstract LocalDate getStartDate();
 
-    // Start date
-    public abstract void setStartDate(LocalDate beginDate);
+    public abstract void setStartDate(LocalDate startDate);
 
     public abstract int getTerm();
 
-    // Term
-    public abstract void setTerm(int t);
+    public abstract void setTerm(int termPeriod);
 
-    // Returns creation date which is auto-generated
     public abstract LocalDate getCreationDate();
 
+    private void validateNonNegative(double value, String fieldName) {
+        if (value < 0) {
+            throw new IllegalArgumentException(fieldName + " cannot be negative.");
+        }
+    }
+
+    private void validateNonNegative(int value, String fieldName) {
+        if (value < 0) {
+            throw new IllegalArgumentException(fieldName + " cannot be negative.");
+        }
+    }
 }

@@ -2,51 +2,54 @@ package account;
 
 import java.time.LocalDate;
 
-public class AutoLoanAcct extends BaseAccount {
+public class AutoLoanAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number> extends BaseAccount<P, I, S, T> {
+    // Constant for default loan term
+    private static final int DEFAULT_AUTOLOAN_TERM_PERIOD = 84;
 
-    // Default - only creation date of object
+    // Default constructor
     public AutoLoanAcct() {
-        super();
-    }
-
-    // Custom term
-    public AutoLoanAcct(double p, double i, LocalDate sDate, int t) {
-        super(p, i, sDate, t);
-    }
-
-    public AutoLoanAcct(double p, double i, LocalDate sDate) {
-        super(p, i, sDate, 84);
+        super(); // Inherit default behavior from BaseAccount
     }
 
     @Override
     public double getBalance() {
-        return principal;
+        return principalAmount;
     }
 
     @Override
-    public void setBalance(double p) {
-        this.principal = p;
+    public void setBalance(double principalAmount) {
+        this.principalAmount = principalAmount;
+
     }
 
-    @Override
+    // Constructor with custom term
+    public AutoLoanAcct(double principalAmount, double interestRate, LocalDate startDate, int termPeriod) {
+        super(principalAmount, interestRate, startDate, termPeriod);
+    }
+
+    // Constructor with default term
+    public AutoLoanAcct(double principalAmount, double interestRate, LocalDate startDate) {
+        this(principalAmount, interestRate, startDate, DEFAULT_AUTOLOAN_TERM_PERIOD);
+    }
+
+        @Override
     public double getInterestRate() {
         return interestRate;
     }
 
     @Override
-    public void setInterestRate(double i) {
-        this.interestRate = i;
-
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 
     @Override
-    public double getInterest() {
-        return totalInterest;
+    public double calculateTotalInterest() {
+        return totalInterest; // Simply return the current field value
     }
 
     @Override
-    public void setStartDate(LocalDate beginDate) {
-        this.startDate = beginDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     @Override
@@ -55,13 +58,13 @@ public class AutoLoanAcct extends BaseAccount {
     }
 
     @Override
-    public void setTerm(int t) {
-        this.term = t;
+    public void setTerm(int termPeriod) {
+        this.termPeriod = termPeriod;
     }
 
     @Override
     public int getTerm() {
-        return term;
+        return termPeriod;
     }
 
     @Override

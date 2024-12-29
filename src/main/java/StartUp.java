@@ -1,53 +1,48 @@
-/* This will be the main start-up for the application.
-All menus and selections will be entered here,
-then the appropriate class & method will be called.
- */
-
 import account.MortgageAcct;
 import account.SavingsAcct;
 
 import java.time.LocalDate;
 
-
 public class StartUp {
+    private static final double DEFAULT_SAVINGS_PRINCIPAL = 50000.00;
+    private static final double DEFAULT_SAVINGS_INTEREST = 4.75;
+    private static final double DEFAULT_MORTGAGE_PRINCIPAL = 150000.00;
+    private static final double DEFAULT_MORTGAGE_INTEREST = 5.69;
+    private static final double DEFAULT_ESCROW_AMOUNT = 248.50;
+
     public static void main(String[] args) {
+        // Extracted descriptive variables for dates
+        LocalDate savingsStartDate = LocalDate.parse("2025-01-01");
+        LocalDate savingsMaturityDate = LocalDate.parse("2026-01-01");
 
-
-        // Default constructor only inputs creation date.
-        // Even if not passing, still need to enter types in same order as class
-        // definition and super-class definition.
-        SavingsAcct<Double, Double, LocalDate, Integer, LocalDate> save = new SavingsAcct<Double, Double, LocalDate, Integer, LocalDate>();
-        System.out.println("Savings created: " + save.getCreationDate());
+        // Initialize default Savings Account using helper method
+        SavingsAcct<?, ?, ?, ?> defaultSavingsAccount = createDefaultSavingsAccount();
+        System.out.println("Savings created: " + defaultSavingsAccount.getCreationDate());
         System.out.println();
 
-       MortgageAcct<Double, Double, LocalDate, Integer, Double> mtg = new MortgageAcct<Double, Double, LocalDate, Integer, Double>();
-       System.out.println("Mortgage created: " + mtg.getCreationDate());
-        //System.out.println();
-
-
-        // Create date variables to pass to object.
-        var sDate = LocalDate.parse("2025-01-01");  // Start date
-        var mDate = LocalDate.parse("2026-01-01");  // Maturity date
-
-        // TODO:    Possible addition: Use startDate & maturyDate to calcule the months
-        //        in term automatically.
-
-
-        // Did not include term, so it defaults to 60.
-        SavingsAcct<Double, Double, LocalDate, Integer, LocalDate> save2 = new SavingsAcct<Double, Double, LocalDate, Integer, LocalDate>(50000.0, 4.75, sDate, mDate);
-        System.out.println("Balance: " + save2.getBalance());
-        System.out.println("Term: " + save2.getTerm() + " months");
+        // Initialize default Mortgage Account using helper method
+        MortgageAcct<?, ?, ?, ?> defaultMortgageAccount = createDefaultMortgageAccount();
+        System.out.println("Mortgage created: " + defaultMortgageAccount.getCreationDate());
         System.out.println();
 
-        MortgageAcct<Double, Double, LocalDate, Integer, Double> mtg2 = new MortgageAcct<Double, Double, LocalDate, Integer, Double>(150000.00, 5.69, sDate, 248.50);
-        System. out.println("Monthly escrow is: " + mtg2.getEscrowAmt());
+        // Create second Savings Account with specific parameters
+        SavingsAcct<?, ?, ?, ?> customSavingsAccount = new SavingsAcct<>(DEFAULT_SAVINGS_PRINCIPAL, DEFAULT_SAVINGS_INTEREST, savingsStartDate, savingsMaturityDate);
+        System.out.println("Balance: " + customSavingsAccount.getBalance());
+        System.out.println("Term: " + customSavingsAccount.getTerm() + " months");
+        System.out.println();
 
+        // Create second Mortgage Account with specific parameters
+        MortgageAcct<?, ?, ?, ?> customMortgageAccount = new MortgageAcct<>(DEFAULT_MORTGAGE_PRINCIPAL, DEFAULT_MORTGAGE_INTEREST, savingsStartDate, DEFAULT_ESCROW_AMOUNT);
+        System.out.println("Monthly escrow is: " + customMortgageAccount.getEscrowAmount());
+    }
 
+    // Helper method to create default Savings Account
+    private static SavingsAcct<?, ?, ?, ?> createDefaultSavingsAccount() {
+        return new SavingsAcct<>();
+    }
 
-
-
-
-
-
+    // Helper method to create default Mortgage Account
+    private static MortgageAcct<?, ?, ?, ?> createDefaultMortgageAccount() {
+        return new MortgageAcct<>();
     }
 }

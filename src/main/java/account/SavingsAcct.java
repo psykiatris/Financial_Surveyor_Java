@@ -2,71 +2,46 @@ package account;
 
 import java.time.LocalDate;
 
-// If superclass has extends clause in generic type def, must copy here also.
-public class SavingsAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number, M extends LocalDate> extends BaseAccount<P, I, S, T> {
+public class SavingsAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number>
+        extends BaseAccount<P, I, S, T> {
 
-    // Specific to savings
-    protected LocalDate maturityDate;   // For maturity dates
+    // Extracted constant to avoid magic number
+    private static final int DEFAULT_SAVINGS_TERM_PERIOD = 60;
 
+    // Specific field for savings account
+    private LocalDate maturityDate;
 
     // Default constructor
     public SavingsAcct() {
         super();
+    }
+
+    @Override
+    public double getBalance() {
+        return principalAmount;
+    }
+
+    @Override
+    public void setBalance(double principalAmount) {
+        this.principalAmount = principalAmount;
 
     }
 
-    // Allows input of term period to be passed.
-    // No maturity date
-    public SavingsAcct(double p, double i, LocalDate sDate, int t) {
-        super(p, i, sDate, t);
-
-    }
-
-
-    // Sets default term period (5 years = 60 months)
-    public SavingsAcct(double p, double i, LocalDate sDate) {
-        super(p, i, sDate, 60);
-
-    }
-
-    // Local generic constructor for maturidy dates - custom term
-    public SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate, int t) {
-        super(p, i, sDate, t);
-        this.maturityDate = LocalDate.parse(mDate.toString());
-    }
-
-    // Default term
-    public SavingsAcct(double p, double i, LocalDate sDate, LocalDate mDate) {
-        super(p, i, sDate, 60);
-        this.maturityDate = LocalDate.parse(mDate.toString());
-    }
-
-    // Overrides
     @Override
     public double getInterestRate() {
         return interestRate;
     }
 
     @Override
-    public void setInterestRate(double i) {
-        this.interestRate = i;
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
 
     }
 
     @Override
-    public double getInterest() {
-        return totalInterest;
-    }
-
-    @Override
-    public double getBalance() {
-        return principal;
-    }
-
-    @Override
-    public void setBalance(double p) {
-        this.principal = p;
-
+    public double calculateTotalInterest() {
+        // TODO:    Write something to process accumulated interest.
+        return 0;
     }
 
     @Override
@@ -75,34 +50,58 @@ public class SavingsAcct<P extends Number, I extends Number, S extends LocalDate
     }
 
     @Override
-    public void setStartDate(LocalDate beginDate) {
-        this.startDate = beginDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
 
     }
 
     @Override
     public int getTerm() {
-        return term;
+        return termPeriod;
     }
 
     @Override
-    public void setTerm(int t) {
-        this.term = t;
+    public void setTerm(int termPeriod) {
+        this.termPeriod = termPeriod;
 
     }
 
     @Override
     public LocalDate getCreationDate() {
         return creationDate;
-
     }
 
-    // Local methods for maturity date.
+    // Constructor with term period and maturity date
+    public SavingsAcct(double principalAmount, double interestRate, LocalDate startDate, int termPeriod) {
+        super(principalAmount, interestRate, startDate, termPeriod);
+    }
+
+    // Constructor with default term period (5 years = 60 months)
+    public SavingsAcct(double principalAmount, double interestRate, LocalDate startDate) {
+        this(principalAmount, interestRate, startDate, DEFAULT_SAVINGS_TERM_PERIOD);
+    }
+
+    // Constructor with custom term period and maturity date
+    public SavingsAcct(double principalAmount, double interestRate, LocalDate startDate, LocalDate maturityDate, int termPeriod) {
+        this(principalAmount, interestRate, startDate, termPeriod);
+        this.maturityDate = maturityDate; // Simplified, removed redundant LocalDate.parse
+    }
+
+    // Constructor with a default term and maturity date
+    public SavingsAcct(double principalAmount, double interestRate, LocalDate startDate, LocalDate maturityDate) {
+        this(principalAmount, interestRate, startDate, DEFAULT_SAVINGS_TERM_PERIOD);
+        this.maturityDate = maturityDate;
+    }
+
+    // Getter and setter for maturity date
     public LocalDate getMaturityDate() {
         return maturityDate;
     }
 
-    public void setMaturityDate(LocalDate mDate) {
-        this.maturityDate = LocalDate.parse(mDate.toString());
+    public void setMaturityDate(LocalDate maturityDate) {
+        if (maturityDate.isBefore(getStartDate())) {
+            throw new IllegalArgumentException("Maturity date must be after the start date");
+        }
+        this.maturityDate = maturityDate;
     }
 }
