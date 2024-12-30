@@ -1,4 +1,8 @@
 package account;
+/* I desired to create this as a generic super-class, and as
+I am trying to grasp the concepts of generics, I keep waffling between
+non-generic and generic.
+ */
 
 import java.time.LocalDate;
 
@@ -18,7 +22,7 @@ public abstract class BaseAccount {
     // Constructor with parameters
     public BaseAccount(double principalAmount, double interestRate, LocalDate startDate, int termPeriod) {
         validateNonNegative(principalAmount, "Principal amount");
-        validateNonNegative(interestRate, "Interest rate");
+        validateNonNegative( interestRate, "Interest rate");
         validateNonNegative(termPeriod, "Term period");
 
         this.principalAmount = principalAmount;
@@ -48,6 +52,7 @@ public abstract class BaseAccount {
     public abstract void setStartDate(LocalDate startDate);
 
     public abstract int getTerm();
+
 
     public abstract void setTerm(int termPeriod);
 

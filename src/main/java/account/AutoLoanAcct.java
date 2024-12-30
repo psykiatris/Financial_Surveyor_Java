@@ -11,7 +11,7 @@ public class AutoLoanAcct extends BaseAccount {
         super(); // Inherit default behavior from BaseAccount
     }
 
-    @Override
+      @Override
     public double getBalance() {
         return principalAmount;
     }

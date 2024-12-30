@@ -15,7 +15,7 @@ public class MortgageAcct extends BaseAccount {
     }
 
     // Constructor with custom term
-    public MortgageAcct(double principal, double interest, LocalDate startDate, int term) {
+    public MortgageAcct(double principal,double interest, LocalDate startDate, int term) {
         super(principal, interest, startDate, term);
     }
 
@@ -34,6 +34,7 @@ public class MortgageAcct extends BaseAccount {
     public MortgageAcct(double principal, double interest, LocalDate startDate, double escrowAmount) {
         this(principal, interest, startDate, DEFAULT_TERM_PERIOD, escrowAmount);
     }
+
 
     @Override
     public LocalDate getCreationDate() {
