@@ -2,7 +2,7 @@ package account;
 
 import java.time.LocalDate;
 
-public abstract class BaseAccount<P extends Number, I extends Number, S extends LocalDate, T extends Number> {
+public abstract class BaseAccount {
 
     // Constants for better readability
     private static final int DEFAULT_TERM_PERIOD = 60;

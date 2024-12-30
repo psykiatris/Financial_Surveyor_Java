@@ -2,8 +2,7 @@ package account;
 
 import java.time.LocalDate;
 
-public class SavingsAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number>
-        extends BaseAccount<P, I, S, T> {
+public class SavingsAcct extends BaseAccount {
 
     // Extracted constant to avoid magic number
     private static final int DEFAULT_SAVINGS_TERM_PERIOD = 60;

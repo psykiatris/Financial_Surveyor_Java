@@ -2,7 +2,7 @@ package account;
 
 import java.time.LocalDate;
 
-public class MortgageAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number> extends BaseAccount<P, I, S, T> {
+public class MortgageAcct extends BaseAccount {
 
     private static final int DEFAULT_TERM_PERIOD = 360;
 

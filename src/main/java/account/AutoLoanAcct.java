@@ -2,7 +2,7 @@ package account;
 
 import java.time.LocalDate;
 
-public class AutoLoanAcct<P extends Number, I extends Number, S extends LocalDate, T extends Number> extends BaseAccount<P, I, S, T> {
+public class AutoLoanAcct extends BaseAccount {
     // Constant for default loan term
     private static final int DEFAULT_AUTOLOAN_TERM_PERIOD = 84;
 

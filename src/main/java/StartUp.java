@@ -16,33 +16,33 @@ public class StartUp {
         LocalDate savingsMaturityDate = LocalDate.parse("2026-01-01");
 
         // Initialize default Savings Account using helper method
-        SavingsAcct<?, ?, ?, ?> defaultSavingsAccount = createDefaultSavingsAccount();
+        SavingsAcct defaultSavingsAccount = createDefaultSavingsAccount();
         System.out.println("Savings created: " + defaultSavingsAccount.getCreationDate());
         System.out.println();
 
         // Initialize default Mortgage Account using helper method
-        MortgageAcct<?, ?, ?, ?> defaultMortgageAccount = createDefaultMortgageAccount();
+        MortgageAcct defaultMortgageAccount = createDefaultMortgageAccount();
         System.out.println("Mortgage created: " + defaultMortgageAccount.getCreationDate());
         System.out.println();
 
         // Create second Savings Account with specific parameters
-        SavingsAcct<?, ?, ?, ?> customSavingsAccount = new SavingsAcct<>(DEFAULT_SAVINGS_PRINCIPAL, DEFAULT_SAVINGS_INTEREST, savingsStartDate, savingsMaturityDate);
+        SavingsAcct customSavingsAccount = new SavingsAcct(DEFAULT_SAVINGS_PRINCIPAL, DEFAULT_SAVINGS_INTEREST, savingsStartDate, savingsMaturityDate);
         System.out.println("Balance: " + customSavingsAccount.getBalance());
         System.out.println("Term: " + customSavingsAccount.getTerm() + " months");
         System.out.println();
 
         // Create second Mortgage Account with specific parameters
-        MortgageAcct<?, ?, ?, ?> customMortgageAccount = new MortgageAcct<>(DEFAULT_MORTGAGE_PRINCIPAL, DEFAULT_MORTGAGE_INTEREST, savingsStartDate, DEFAULT_ESCROW_AMOUNT);
+        MortgageAcct customMortgageAccount = new MortgageAcct(DEFAULT_MORTGAGE_PRINCIPAL, DEFAULT_MORTGAGE_INTEREST, savingsStartDate, DEFAULT_ESCROW_AMOUNT);
         System.out.println("Monthly escrow is: " + customMortgageAccount.getEscrowAmount());
     }
 
     // Helper method to create default Savings Account
-    private static SavingsAcct<?, ?, ?, ?> createDefaultSavingsAccount() {
-        return new SavingsAcct<>();
+    private static SavingsAcct createDefaultSavingsAccount() {
+        return new SavingsAcct();
     }
 
     // Helper method to create default Mortgage Account
-    private static MortgageAcct<?, ?, ?, ?> createDefaultMortgageAccount() {
-        return new MortgageAcct<>();
+    private static MortgageAcct createDefaultMortgageAccount() {
+        return new MortgageAcct();
     }
 }
